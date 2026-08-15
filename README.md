@@ -116,10 +116,10 @@ if __name__ == "__main__":
 | Feature | 🌖 LunarPhaseORM | 🐍 SQLAlchemy (v2.0) | 🐢 Tortoise ORM |
 |---|---|---|---|
 | **Primary Architecture** | **Hybrid** (AR + Data Mapper) | Data Mapper | Active Record |
-| **State Storage & RAM** | 🟢 **Rust Core (`_lunarphase_rs`)** | 🔴 Heavy Python Object Graph | 🟡 Python Dict |
-| **N+1 Query Resolution** | 🟢 **Automatic (Zero N+1 Engine)** | 🟡 Manual (`joinedload`) | 🟡 Manual (`prefetch`) |
-| **Dirty Attribute Diffing** | 🟢 **Rust Snapshot Isolation** | 🟢 Unit of Work History | 🔴 Basic re-save |
-| **SQL Query Compilation** | 🟢 **Rust AST Compiler** | 🟡 Python AST | 🟡 PyPika |
+| **State Storage & RAM** | **Rust Core (`_lunarphase_rs`)** | Heavy Python Object Graph | Python Dict |
+| **N+1 Query Resolution** | **Automatic (Zero N+1 Engine)** | Manual (`joinedload`) | Manual (`prefetch`) |
+| **Dirty Attribute Diffing** | **Rust Snapshot Isolation** | Unit of Work History | Basic re-save |
+| **SQL Query Compilation** | **Rust AST Compiler** | Python AST | PyPika |
 | **Async Support** | Native Async First | Async Extension | Native Async |
 
 ---
@@ -158,9 +158,10 @@ For full timeline details, research disclaimers, and milestone tracking, see [RO
 
 ---
 
-## 📖 Full Documentation
+## 📖 Full Documentation & Benchmarks
 
 For in-depth technical documentation, API references, and advanced usage patterns, read [DOCUMENTATION.md](DOCUMENTATION.md).
+For detailed empirical benchmark reports, execution speeds, and memory metrics, read [BENCHMARK.md](BENCHMARK.md).
 
 ---
 
