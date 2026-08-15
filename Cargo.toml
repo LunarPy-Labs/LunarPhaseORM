@@ -1,0 +1,13 @@
+[package]
+name = "lunarphase_rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "_lunarphase_rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22.6", features = ["extension-module", "abi3-py39"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

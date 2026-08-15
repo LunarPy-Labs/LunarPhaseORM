@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "lunarphase-orm"
+version = "0.1.0"
+description = "Smart, Async-Native, High-Performance Python & Rust Object-Relational Mapper"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "aiosqlite>=0.19.0",
+    "pydantic>=2.0.0",
+]
+authors = [
+    { name = "LunarPy-Labs" }
+]
+keywords = ["orm", "async", "sqlite", "postgres", "mysql", "rust", "active-record", "data-mapper"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Rust",
+    "Framework :: AsyncIO",
+]
+
+[project.scripts]
+lunarphase = "lunarphase.cli.main:cli_entrypoint"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "."
+module-name = "lunarphase._lunarphase_rs"
