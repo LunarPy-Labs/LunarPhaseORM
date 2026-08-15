@@ -144,6 +144,20 @@ lunarphase rollback
 
 ---
 
+## 🗺 Development Roadmap
+
+LunarPhaseORM is developed in structured milestone phases. Core phases 1 through 5 are completed in `v0.1.0`, with advanced phases planned through `v1.0.0 Stable`:
+
+- ✅ **Phases 1 - 5 (Completed - v0.1.0)**: Core Descriptors, Multi-driver Async Engines, N+1 Auto-Batching, Rust Snapshot Isolation & Dirty Tracking, CLI Auto-Migrations.
+- 🔷 **Phase 6 (Sep - Oct 2026)**: Native Rust PostgreSQL/MySQL drivers (`sqlx`) & Connection Pool engine.
+- 🔷 **Phase 7 (Nov - Dec 2026)**: Advanced query constructs (`GROUP BY`, `HAVING`, CTEs) & JSON path query operators.
+- 🔷 **Phase 8 (Jan 2027)**: Framework integrations (`lunarphase-fastapi` middleware, Pydantic v2 auto-schemas).
+- 🔷 **Phase 9 (Feb - Mar 2027)**: SIMD JSON parsing (`simd-json`) & v1.0.0 Stable Release.
+
+For full timeline details, research disclaimers, and milestone tracking, see [ROADMAP.md](ROADMAP.md).
+
+---
+
 ## 📖 Full Documentation
 
 For in-depth technical documentation, API references, and advanced usage patterns, read [DOCUMENTATION.md](DOCUMENTATION.md).
