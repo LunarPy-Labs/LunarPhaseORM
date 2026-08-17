@@ -5,6 +5,7 @@
 
   > **Smart Sync. Zero N+1. High-Performance Python & Rust ORM.**
 
+  [![PyPI version](https://img.shields.io/pypi/v/lunarphase-orm.svg?color=blue&nocache=1)](https://pypi.org/project/lunarphase-orm/)
   [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
   [![Rust Engine](https://img.shields.io/badge/core-Rust%20%2F%20PyO3-orange.svg)](https://www.rust-lang.org/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
