@@ -18,26 +18,30 @@ async def run_cli():
     args = parser.parse_args()
     runner = MigrationRunner()
 
-    if args.command == "make:migration":
-        # Imports user models registered in current working directory if available
-        await runner.make_migration(args.name, [])
-    elif args.command == "migrate":
-        await runner.migrate()
-    elif args.command == "rollback":
-        await runner.rollback()
-    elif args.command == "status":
-        engine = get_engine()
-        await runner.init_migration_table()
-        rows = await engine.fetch_all("SELECT name, applied_at FROM _lunarphase_migrations ORDER BY id ASC;")
-        print("\n--- LunarPhaseORM Migration Status ---")
-        if not rows:
-            print("No migrations applied yet.")
+    try:
+        if args.command == "make:migration":
+            # Imports user models registered in current working directory if available
+            await runner.make_migration(args.name, [])
+        elif args.command == "migrate":
+            await runner.migrate()
+        elif args.command == "rollback":
+            await runner.rollback()
+        elif args.command == "status":
+            engine = get_engine()
+            await runner.init_migration_table()
+            rows = await engine.fetch_all("SELECT name, applied_at FROM _lunarphase_migrations ORDER BY id ASC;")
+            print("\n--- LunarPhaseORM Migration Status ---")
+            if not rows:
+                print("No migrations applied yet.")
+            else:
+                for r in rows:
+                    print(f" [X] {r['name']} (applied: {r['applied_at']})")
+            print("--------------------------------------\n")
         else:
-            for r in rows:
-                print(f" [X] {r['name']} (applied: {r['applied_at']})")
-        print("--------------------------------------\n")
-    else:
-        parser.print_help()
+            parser.print_help()
+    finally:
+        engine = get_engine()
+        await engine.disconnect()
 
 
 def cli_entrypoint():
