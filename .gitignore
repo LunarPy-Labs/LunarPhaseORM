@@ -35,7 +35,7 @@ htmlcov/
 *.sqlite
 *.sqlite3
 test_cov.db
-migrations/
+/migrations/
 
 # OS & IDE Files
 .DS_Store

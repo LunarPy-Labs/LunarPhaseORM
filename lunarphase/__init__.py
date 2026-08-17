@@ -22,7 +22,7 @@ from lunarphase.query.builder import QueryBuilder
 from lunarphase.query.batcher import DeferredAutoBatcher
 from lunarphase.migrations.runner import MigrationRunner
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__ = [
     "Model",
     "ModelBase",

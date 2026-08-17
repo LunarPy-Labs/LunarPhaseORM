@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "lunarphase-orm"
-version = "0.1.1"
+version = "0.1.2"
 description = "Smart, Async-Native, High-Performance Python & Rust Object-Relational Mapper"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -29,3 +29,4 @@ lunarphase = "lunarphase.cli.main:cli_entrypoint"
 features = ["pyo3/extension-module"]
 python-source = "."
 module-name = "lunarphase._lunarphase_rs"
+python-packages = ["lunarphase"]
