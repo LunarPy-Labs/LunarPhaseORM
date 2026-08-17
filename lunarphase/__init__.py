@@ -2,6 +2,8 @@
 LunarPhaseORM: Smart, Async-Native, High-Performance Python & Rust Object-Relational Mapper
 """
 
+from __future__ import annotations
+
 from lunarphase.core.model import Model, ModelBase
 from lunarphase.core.fields import (
     FieldDescriptor,

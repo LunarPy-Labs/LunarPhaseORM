@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Any, Dict, List, Optional, Set, Type, TypeVar
 from lunarphase.core.fields import FieldDescriptor, PrimaryKeyField
 from lunarphase.core.state import create_state_tracker

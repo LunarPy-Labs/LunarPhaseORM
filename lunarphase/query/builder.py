@@ -1,4 +1,5 @@
-from typing import Any, List, Optional, Tuple, Type, TypeVar, Dict
+from __future__ import annotations
+from typing import Any, Generic, List, Optional, Tuple, Type, TypeVar, Dict
 import math
 from lunarphase.core.ast import BinaryOp, ColumnRef, Literal
 from lunarphase.db.engine import get_engine
@@ -11,7 +12,7 @@ except ImportError:
 
 T = TypeVar("T", bound="Model")
 
-class QueryBuilder:
+class QueryBuilder(Generic[T]):
     def __init__(self, model_cls: Type[T]):
         self.model_cls = model_cls
         self.table_name = getattr(model_cls, "__tablename__", model_cls.__name__.lower())
