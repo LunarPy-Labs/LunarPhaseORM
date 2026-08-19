@@ -1,73 +1,110 @@
-# Relations & Auto-Batching Engine
+# Relations & Auto-Batching Tutorial
 
-This document describes relationship descriptors (`HasMany`, `BelongsTo`, `HasOne`), eager loading, and the `DeferredAutoBatcher` micro-task scheduling algorithm.
+This document covers relationship descriptors (`HasMany`, `BelongsTo`, `HasOne`), eager loading, and the `DeferredAutoBatcher` micro-task scheduling engine.
 
 ---
 
-## Defining Relationships
+## 1. Declaring Relationships
 
-Relationships are declared on models using relationship descriptors:
+Declare model relationships using relationship descriptors:
 
 ```python
-from lunarphase import Model, PrimaryKeyField, StringField, IntegerField, HasMany, BelongsTo
+from lunarphase import Model, PrimaryKeyField, StringField, IntegerField, HasMany, BelongsTo, HasOne
 
 class Author(Model):
     __tablename__ = "authors"
+
     id = PrimaryKeyField()
     name = StringField()
+
+    # One-to-Many: Author has many Posts
     posts = HasMany(lambda: Post, foreign_key="author_id")
+
+    # One-to-One: Author has one Profile
+    profile = HasOne(lambda: Profile, foreign_key="author_id")
 
 class Post(Model):
     __tablename__ = "posts"
+
     id = PrimaryKeyField()
-    title = StringField()
     author_id = IntegerField()
+    title = StringField()
+
+    # Many-to-One: Post belongs to Author
     author = BelongsTo(Author, foreign_key="author_id")
+
+class Profile(Model):
+    __tablename__ = "profiles"
+
+    id = PrimaryKeyField()
+    author_id = IntegerField()
+    bio = StringField()
 ```
 
 ---
 
-## The N+1 Problem & Solution Algorithm
+## 2. Relationship Access Syntax
 
-When accessing relationship attributes inside an async iteration loop, naive ORM implementations issue a separate SQL `SELECT` for each parent model ($N+1$ queries):
+### 2.1 Lazy Relationship Loading
+
+Accessing a relationship attribute asynchronously loads the related model(s):
 
 ```python
-# Naive execution issuing N+1 queries:
+# Accessing HasMany
+author = await Author.where(id=1).first()
+posts = await author.posts  # Returns List[Post]
+
+# Accessing BelongsTo
+post = await Post.where(id=10).first()
+author = await post.author  # Returns Optional[Author]
+
+# Accessing HasOne
+author = await Author.where(id=1).first()
+profile = await author.profile  # Returns Optional[Profile]
+```
+
+---
+
+## 3. The N+1 Problem & Auto-Batching Engine
+
+In traditional ORMs, accessing relationships inside a loop causes $N+1$ queries:
+
+```python
+# Traditional ORM: Executes 1 SELECT for authors, then N SELECT queries inside loop!
 authors = await Author.all()
 for author in authors:
-    posts = await author.posts # Issues SELECT * FROM posts WHERE author_id = ? for EVERY loop!
+    posts = await author.posts  # N+1 bottleneck!
 ```
 
-### `DeferredAutoBatcher` Execution Cycle
+### How `DeferredAutoBatcher` Resolves N+1 Queries
 
-LunarPhaseORM resolves $N+1$ queries by scheduling relationship loading tasks into the `asyncio` event loop micro-task queue via `loop.call_soon()`:
+LunarPhaseORM uses **Event Loop Micro-Task Deferred Batching**. When accessing `await author.posts` inside a loop, tasks are registered into a micro-task queue via `asyncio.get_running_loop().call_soon()`.
 
-```
-Step 1: Loop Execution
-  for author in authors:
-      posts = await author.posts ──► Registers key into DeferredAutoBatcher queue
+```python
+async def auto_batching_tutorial():
+    authors = await Author.all()
 
-Step 2: Micro-Task Scheduler (loop.call_soon)
-  Event loop yields control to micro-task ──► Triggers _flush_batch()
-
-Step 3: Single Batch Query Execution
-  Executes ONE SQL query: SELECT * FROM posts WHERE author_id IN (1, 2, 3, ... N);
-
-Step 4: Rust Key Deduplication & Result Distribution
-  BatchAggregator deduplicates keys via FxHashSet<i64> ──► Resolves Future for each author
+    # Accessing author.posts across loop iterations registers keys into DeferredAutoBatcher.
+    # The event loop micro-task flushes them into a SINGLE query:
+    # SELECT * FROM posts WHERE author_id IN (1, 2, 3, 4, 5...);
+    for author in authors:
+        posts = await author.posts
+        print(f"Author {author.name} has {len(posts)} posts.")
 ```
 
 ---
 
-## Eager Loading (`with_relations`)
+## 4. Eager Loading Syntax (`with_relations`)
 
-Relationships can also be eagerly fetched in advance using `with_relations()`:
+If you prefer to pre-fetch relationships upfront, use `.with_relations()`:
 
 ```python
-# Fetches authors and eagerly loads all related posts in a single batch query
-authors = await Author.with_relations("posts").all()
+async def eager_loading_tutorial():
+    # Eagerly loads all related posts in 1 query before entering the loop
+    authors = await Author.with_relations("posts").all()
 
-for author in authors:
-    for post in author.posts:
-        print(post.title)
+    for author in authors:
+        # Accessing author.posts now reads directly from memory!
+        for post in author.posts:
+            print(f"- {author.name}: {post.title}")
 ```

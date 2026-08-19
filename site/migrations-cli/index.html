@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#migrations-cli-reference" class="md-skip">
+        <a href="#migrations-cli-reference-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -304,6 +304,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../syntax-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -499,56 +526,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#schema-diff-engine-schemadiffengine" class="md-nav__link">
+  <a href="#1-command-line-tool-lunarphase" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schema Diff Engine (SchemaDiffEngine)
+        1. Command Line Tool (lunarphase)
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#command-line-tool-lunarphase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Command Line Tool (lunarphase)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Command Line Tool (lunarphase)">
+    <nav class="md-nav" aria-label="1. Command Line Tool (lunarphase)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-lunarphase-status" class="md-nav__link">
+  <a href="#cli-commands-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. lunarphase status
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-lunarphase-makemigration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. lunarphase make:migration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. lunarphase make:migration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#migration-file-anatomy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migration File Anatomy
+        CLI Commands Summary
       
     </span>
   </a>
@@ -559,12 +552,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-lunarphase-migrate" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-step-by-step-cli-migration-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. lunarphase migrate
+        2. Step-by-Step CLI Migration Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Step-by-Step CLI Migration Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-21-checking-migration-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.1: Checking Migration Status
       
     </span>
   </a>
@@ -572,10 +577,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-lunarphase-rollback" class="md-nav__link">
+  <a href="#step-22-generating-migration-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. lunarphase rollback
+        Step 2.2: Generating Migration Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-generated-migration-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3: Generated Migration File Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-24-applying-migrations-lunarphase-migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.4: Applying Migrations (lunarphase migrate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-25-verifying-updated-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.5: Verifying Updated Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-26-rolling-back-migrations-lunarphase-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.6: Rolling Back Migrations (lunarphase rollback)
       
     </span>
   </a>
@@ -622,56 +671,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#schema-diff-engine-schemadiffengine" class="md-nav__link">
+  <a href="#1-command-line-tool-lunarphase" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schema Diff Engine (SchemaDiffEngine)
+        1. Command Line Tool (lunarphase)
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#command-line-tool-lunarphase" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Command Line Tool (lunarphase)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Command Line Tool (lunarphase)">
+    <nav class="md-nav" aria-label="1. Command Line Tool (lunarphase)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-lunarphase-status" class="md-nav__link">
+  <a href="#cli-commands-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. lunarphase status
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-lunarphase-makemigration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. lunarphase make:migration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. lunarphase make:migration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#migration-file-anatomy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Migration File Anatomy
+        CLI Commands Summary
       
     </span>
   </a>
@@ -682,12 +697,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-lunarphase-migrate" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2-step-by-step-cli-migration-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. lunarphase migrate
+        2. Step-by-Step CLI Migration Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Step-by-Step CLI Migration Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-21-checking-migration-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.1: Checking Migration Status
       
     </span>
   </a>
@@ -695,10 +722,54 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-lunarphase-rollback" class="md-nav__link">
+  <a href="#step-22-generating-migration-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. lunarphase rollback
+        Step 2.2: Generating Migration Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-generated-migration-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3: Generated Migration File Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-24-applying-migrations-lunarphase-migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.4: Applying Migrations (lunarphase migrate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-25-verifying-updated-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.5: Verifying Updated Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-26-rolling-back-migrations-lunarphase-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.6: Rolling Back Migrations (lunarphase rollback)
       
     </span>
   </a>
@@ -730,59 +801,97 @@
   
 
 
-<h1 id="migrations-cli-reference">Migrations &amp; CLI Reference</h1>
-<p>This document covers automated database schema diffing (<code>SchemaDiffEngine</code>), reversible migration generation, and terminal CLI commands.</p>
+<h1 id="migrations-cli-reference-tutorial">Migrations &amp; CLI Reference Tutorial</h1>
+<p>This document covers automated database schema diffing (<code>SchemaDiffEngine</code>), migration file generation, and CLI terminal commands.</p>
 <hr />
-<h2 id="schema-diff-engine-schemadiffengine">Schema Diff Engine (<code>SchemaDiffEngine</code>)</h2>
-<p>LunarPhaseORM includes an automated DDL generator powered by native Rust (<code>src/migration_diff.rs</code>). The engine compares in-memory <code>Model</code> field definitions against database table introspection schemas:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+---------------------------+       +---------------------------+
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|    Model Definitions      |       |  Database Introspection   |
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|  - id: INTEGER PRIMARY KEY|  vs   |  - id: INTEGER PRIMARY KEY|
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|  - name: VARCHAR(255)     |       |  - name: VARCHAR(255)     |
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|  - age: INTEGER           |       |  (missing &#39;age&#39; column)   |
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>+---------------------------+       +---------------------------+
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                  │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                       SchemaDiffEngine.diff_table()
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                                  │
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                  ▼
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                Generated DDL: ALTER TABLE users ADD COLUMN age INTEGER;
-</code></pre></div>
+<h2 id="1-command-line-tool-lunarphase">1. Command Line Tool (<code>lunarphase</code>)</h2>
+<p>The <code>lunarphase</code> CLI manages database schema migrations, status inspections, and rollbacks.</p>
+<h3 id="cli-commands-summary">CLI Commands Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Command Syntax</th>
+<th>Description</th>
+<th>Example Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lunarphase status</code></td>
+<td>Displays current migration status and pending files</td>
+<td><code>lunarphase status</code></td>
+</tr>
+<tr>
+<td><code>lunarphase make:migration &lt;name&gt;</code></td>
+<td>Generates a new DDL schema migration file</td>
+<td><code>lunarphase make:migration "create_users_table"</code></td>
+</tr>
+<tr>
+<td><code>lunarphase migrate</code></td>
+<td>Applies all pending migrations sequentially</td>
+<td><code>lunarphase migrate</code></td>
+</tr>
+<tr>
+<td><code>lunarphase rollback</code></td>
+<td>Rolls back the most recently applied migration</td>
+<td><code>lunarphase rollback</code></td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="command-line-tool-lunarphase">Command Line Tool (<code>lunarphase</code>)</h2>
-<p>The <code>lunarphase</code> command-line interface provides tools to manage migration files, inspect status, apply pending migrations, and roll back changes.</p>
-<h3 id="1-lunarphase-status">1. <code>lunarphase status</code></h3>
-<p>Displays current migration state and checks for pending migration files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>status
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Database<span class="w"> </span>Dialect:<span class="w"> </span>sqlite
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Current<span class="w"> </span>Revision:<span class="w"> </span>20260815_001_create_users_table.py
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Pending<span class="w"> </span>Migrations:<span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>remaining
+<h2 id="2-step-by-step-cli-migration-walkthrough">2. Step-by-Step CLI Migration Walkthrough</h2>
+<h3 id="step-21-checking-migration-status">Step 2.1: Checking Migration Status</h3>
+<p>Check current database migration state:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>status
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>---<span class="w"> </span>LunarPhaseORM<span class="w"> </span>Migration<span class="w"> </span>Status<span class="w"> </span>---
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>No<span class="w"> </span>migrations<span class="w"> </span>applied<span class="w"> </span>yet.
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>--------------------------------------
 </code></pre></div>
-<h3 id="2-lunarphase-makemigration">2. <code>lunarphase make:migration</code></h3>
-<p>Generates a reversible Python migration file in <code>migrations/</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>make:migration<span class="w"> </span><span class="s2">&quot;add_user_age_column&quot;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Created<span class="w"> </span>migration:<span class="w"> </span>migrations/20260815_002_add_user_age_column.py
+<h3 id="step-22-generating-migration-files">Step 2.2: Generating Migration Files</h3>
+<p>Generate a new migration script based on your defined models:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>make:migration<span class="w"> </span><span class="s2">&quot;create_users_table&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Created<span class="w"> </span>migration<span class="w"> </span>file:<span class="w"> </span>migrations/1723872000_create_users_table.py
 </code></pre></div>
-<h4 id="migration-file-anatomy">Migration File Anatomy</h4>
-<p>Generated migration files export <code>upgrade()</code> and <code>downgrade()</code> functions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># migrations/20260815_002_add_user_age_column.py</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upgrade</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">await</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;ALTER TABLE users ADD COLUMN age INTEGER;&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">downgrade</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="k">await</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;ALTER TABLE users DROP COLUMN age;&quot;</span><span class="p">)</span>
+<h3 id="step-23-generated-migration-file-structure">Step 2.3: Generated Migration File Structure</h3>
+<p>The CLI creates a Python migration script exporting <code>upgrade(engine)</code> and <code>downgrade(engine)</code> functions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="sd">Migration generated automatically by LunarPhaseORM</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">Timestamp: 1723872000</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upgrade</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">sql_statements</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="s2">&quot;CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255) NOT NULL, age INTEGER DEFAULT 18);&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="n">sql_statements</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">await</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">downgrade</span><span class="p">(</span><span class="n">engine</span><span class="p">):</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="n">sql_statements</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="s2">&quot;DROP TABLE IF EXISTS users;&quot;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="p">]</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">for</span> <span class="n">sql</span> <span class="ow">in</span> <span class="n">sql_statements</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="k">await</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="3-lunarphase-migrate">3. <code>lunarphase migrate</code></h3>
-<p>Applies all pending migration files sequentially:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>migrate
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Applying<span class="w"> </span>migration<span class="w"> </span>20260815_002_add_user_age_column.py...<span class="w"> </span>OK
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Successfully<span class="w"> </span>applied<span class="w"> </span><span class="m">1</span><span class="w"> </span>migration<span class="o">(</span>s<span class="o">)</span>.
+<h3 id="step-24-applying-migrations-lunarphase-migrate">Step 2.4: Applying Migrations (<code>lunarphase migrate</code>)</h3>
+<p>Execute pending migrations:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>migrate
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Applying<span class="w"> </span>migration:<span class="w"> </span>1723872000_create_users_table.py
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Successfully<span class="w"> </span>applied:<span class="w"> </span>1723872000_create_users_table.py
 </code></pre></div>
-<h3 id="4-lunarphase-rollback">4. <code>lunarphase rollback</code></h3>
-<p>Rolls back the most recently applied migration by executing its <code>downgrade()</code> function:</p>
+<h3 id="step-25-verifying-updated-status">Step 2.5: Verifying Updated Status</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>status
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>---<span class="w"> </span>LunarPhaseORM<span class="w"> </span>Migration<span class="w"> </span>Status<span class="w"> </span>---
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w"> </span><span class="o">[</span>X<span class="o">]</span><span class="w"> </span>1723872000_create_users_table.py<span class="w"> </span><span class="o">(</span>applied:<span class="w"> </span><span class="m">2026</span>-08-17<span class="w"> </span><span class="m">10</span>:15:00<span class="o">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>--------------------------------------
+</code></pre></div>
+<h3 id="step-26-rolling-back-migrations-lunarphase-rollback">Step 2.6: Rolling Back Migrations (<code>lunarphase rollback</code>)</h3>
+<p>Revert the last applied migration:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>lunarphase<span class="w"> </span>rollback
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Rolling<span class="w"> </span>back<span class="w"> </span>migration<span class="w"> </span>20260815_002_add_user_age_column.py...<span class="w"> </span>OK
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Successfully<span class="w"> </span>rolled<span class="w"> </span>back<span class="w"> </span><span class="m">1</span><span class="w"> </span>migration<span class="o">(</span>s<span class="o">)</span>.
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Rolling<span class="w"> </span>back<span class="w"> </span>migration:<span class="w"> </span>1723872000_create_users_table.py
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Successfully<span class="w"> </span>rolled<span class="w"> </span>back:<span class="w"> </span>1723872000_create_users_table.py
 </code></pre></div>
 
 

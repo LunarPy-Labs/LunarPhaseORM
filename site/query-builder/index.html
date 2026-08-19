@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#query-builder-api" class="md-skip">
+        <a href="#query-builder-api-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -306,6 +306,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../syntax-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -420,10 +447,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#query-construction" class="md-nav__link">
+  <a href="#1-query-builder-fluent-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Construction
+        1. Query Builder Fluent Syntax
       
     </span>
   </a>
@@ -431,10 +458,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dialect-parameter-binding" class="md-nav__link">
+  <a href="#2-chainable-clause-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dialect Parameter Binding
+        2. Chainable Clause Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Chainable Clause Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selectfields-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .select(*fields: str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whereconditions-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .where(*conditions, **kwargs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order_byfield-str-direction-str-asc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .order_by(field: str, direction: str = "asc")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitcount-int-offsetcount-int" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .limit(count: int) &amp; .offset(count: int)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointarget_model-on-str-join_type-str-inner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .join(target_model, on: str, join_type: str = "INNER")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with_relationsrelations-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .with_relations(*relations: str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-query-execution-methods-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Query Execution Methods Syntax
       
     </span>
   </a>
@@ -442,21 +552,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-execution-methods" class="md-nav__link">
+  <a href="#4-comprehensive-pagination-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Execution Methods
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-expansion-__in" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IN Expansion (__in)
+        4. Comprehensive Pagination Example
       
     </span>
   </a>
@@ -579,10 +678,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#query-construction" class="md-nav__link">
+  <a href="#1-query-builder-fluent-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Construction
+        1. Query Builder Fluent Syntax
       
     </span>
   </a>
@@ -590,10 +689,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dialect-parameter-binding" class="md-nav__link">
+  <a href="#2-chainable-clause-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dialect Parameter Binding
+        2. Chainable Clause Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Chainable Clause Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selectfields-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .select(*fields: str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whereconditions-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .where(*conditions, **kwargs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order_byfield-str-direction-str-asc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .order_by(field: str, direction: str = "asc")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitcount-int-offsetcount-int" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .limit(count: int) &amp; .offset(count: int)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jointarget_model-on-str-join_type-str-inner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .join(target_model, on: str, join_type: str = "INNER")
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with_relationsrelations-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .with_relations(*relations: str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-query-execution-methods-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Query Execution Methods Syntax
       
     </span>
   </a>
@@ -601,21 +783,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#query-execution-methods" class="md-nav__link">
+  <a href="#4-comprehensive-pagination-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Query Execution Methods
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-expansion-__in" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IN Expansion (__in)
+        4. Comprehensive Pagination Example
       
     </span>
   </a>
@@ -642,98 +813,118 @@
   
 
 
-<h1 id="query-builder-api">Query Builder API</h1>
-<p>This document details the type-safe fluent <code>QueryBuilder</code> API, AST generation, dialect-specific parameter binding, and execution methods.</p>
+<h1 id="query-builder-api-tutorial">Query Builder API Tutorial</h1>
+<p>This document details the fluent <code>QueryBuilder</code> API, AST query construction, parameter binding, and execution methods.</p>
 <hr />
-<h2 id="query-construction">Query Construction</h2>
-<p><code>QueryBuilder</code> constructs abstract syntax trees (AST) representing database queries. Method chaining appends clause nodes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">QueryBuilder</span>
+<h2 id="1-query-builder-fluent-syntax">1. Query Builder Fluent Syntax</h2>
+<p>The <code>QueryBuilder</code> provides a type-safe, chainable interface for building SQL queries.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">PrimaryKeyField</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">IntegerField</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Constructs AST for SELECT id, name FROM users WHERE age &gt;= 18 ORDER BY name ASC LIMIT 10</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">query</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;asc&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nb">id</span> <span class="o">=</span> <span class="n">PrimaryKeyField</span><span class="p">()</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">age</span> <span class="o">=</span> <span class="n">IntegerField</span><span class="p">()</span>
 </code></pre></div>
 <hr />
-<h2 id="dialect-parameter-binding">Dialect Parameter Binding</h2>
-<p>SQL parameters are formatted according to the configured database engine driver:</p>
-<table>
-<thead>
-<tr>
-<th>Database Dialect</th>
-<th>Driver Package</th>
-<th>Parameter Placeholder Format</th>
-<th>Compiled Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sqlite</code></td>
-<td><code>aiosqlite</code></td>
-<td><code>?</code></td>
-<td><code>WHERE age &gt;= ?</code></td>
-</tr>
-<tr>
-<td><code>postgres</code> / <code>postgresql</code></td>
-<td><code>asyncpg</code></td>
-<td><code>$1</code>, <code>$2</code>, <code>$N</code></td>
-<td><code>WHERE age &gt;= $1 AND status = $2</code></td>
-</tr>
-<tr>
-<td><code>mysql</code></td>
-<td><code>aiomysql</code></td>
-<td><code>%s</code></td>
-<td><code>WHERE age &gt;= %s</code></td>
-</tr>
-</tbody>
-</table>
-<p>Parameter placeholders are generated in Rust via <code>QueryCompiler::get_placeholder(dialect, index)</code>.</p>
+<h2 id="2-chainable-clause-syntax">2. Chainable Clause Syntax</h2>
+<h3 id="selectfields-str"><code>.select(*fields: str)</code></h3>
+<p>Specifies columns to retrieve:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># SELECT id, name FROM users;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="whereconditions-kwargs"><code>.where(*conditions, **kwargs)</code></h3>
+<p>Applies filtering conditions. Supports AST operator expressions and keyword arguments:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># AST Expression Filtering</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Multiple AST Conditions (AND logic)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;Admin&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Keyword Argument Filtering</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># IN Expansion via kwarg (__in)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="order_byfield-str-direction-str-asc"><code>.order_by(field: str, direction: str = "asc")</code></h3>
+<p>Sorts results by field in <code>"asc"</code> or <code>"desc"</code> direction:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># ORDER BY age DESC, name ASC</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;desc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;asc&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="limitcount-int-offsetcount-int"><code>.limit(count: int)</code> &amp; <code>.offset(count: int)</code></h3>
+<p>Controls result set sizing and pagination offset:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># LIMIT 10 OFFSET 20</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="jointarget_model-on-str-join_type-str-inner"><code>.join(target_model, on: str, join_type: str = "INNER")</code></h3>
+<p>Performs table joins:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">posts</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Post</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;posts.user_id = users.id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="with_relationsrelations-str"><code>.with_relations(*relations: str)</code></h3>
+<p>Eagerly loads related models in a single batched query:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Eagerly loads posts for all fetched authors</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">authors</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Author</span><span class="o">.</span><span class="n">with_relations</span><span class="p">(</span><span class="s2">&quot;posts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
 <hr />
-<h2 id="query-execution-methods">Query Execution Methods</h2>
+<h2 id="3-query-execution-methods-syntax">3. Query Execution Methods Syntax</h2>
 <table>
 <thead>
 <tr>
-<th>Method Signature</th>
+<th>Execution Method</th>
 <th>Return Type</th>
 <th>Description</th>
+<th>Example Syntax</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>await query.all()</code></td>
+<td><code>.all()</code></td>
 <td><code>List[Model]</code></td>
-<td>Fetches all matching rows and hydrates model instances.</td>
+<td>Fetches all matching rows as model instances</td>
+<td><code>users = await User.where(User.age &gt;= 18).all()</code></td>
 </tr>
 <tr>
-<td><code>await query.first()</code></td>
+<td><code>.first()</code></td>
 <td><code>Optional[Model]</code></td>
-<td>Fetches the first matching record or returns <code>None</code>.</td>
+<td>Returns the first matching record or <code>None</code></td>
+<td><code>user = await User.where(User.name == "Alice").first()</code></td>
 </tr>
 <tr>
-<td><code>await query.count()</code></td>
+<td><code>.count()</code></td>
 <td><code>int</code></td>
-<td>Executes <code>SELECT COUNT(*) FROM table WHERE ...</code> and returns integer count.</td>
+<td>Executes <code>SELECT COUNT(*)</code> query</td>
+<td><code>total = await User.where(User.age &gt;= 18).count()</code></td>
 </tr>
 <tr>
-<td><code>await query.exists()</code></td>
+<td><code>.exists()</code></td>
 <td><code>bool</code></td>
-<td>Evaluates if at least one matching record exists in the table.</td>
+<td>Checks if at least 1 record matches condition</td>
+<td><code>has_alice = await User.where(User.name == "Alice").exists()</code></td>
 </tr>
 <tr>
-<td><code>await query.paginate(page, per_page)</code></td>
-<td><code>Tuple[List[Model], int]</code></td>
-<td>Applies <code>LIMIT</code> and <code>OFFSET</code> for pagination, returning records and total count.</td>
+<td><code>.paginate(page, per_page)</code></td>
+<td><code>Tuple[List[Model], int, int]</code></td>
+<td>Returns <code>(items, total_count, total_pages)</code></td>
+<td><code>items, total, pages = await User.paginate(page=1, per_page=10)</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="in-expansion-__in">IN Expansion (<code>__in</code>)</h2>
-<p>Passing list parameters expands placeholders dynamically:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Executes: SELECT * FROM users WHERE id IN (?, ?, ?)</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">users</span> <span class="o">=</span> <span class="k">await</span> <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">id__in</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<h2 id="4-comprehensive-pagination-example">4. Comprehensive Pagination Example</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">pagination_tutorial</span><span class="p">():</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">page</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">per_page</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">items</span><span class="p">,</span> <span class="n">total_count</span><span class="p">,</span> <span class="n">total_pages</span> <span class="o">=</span> <span class="k">await</span> <span class="p">(</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="n">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;asc&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">,</span> <span class="n">per_page</span><span class="o">=</span><span class="n">per_page</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Page </span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">total_pages</span><span class="si">}</span><span class="s2"> (Total Records: </span><span class="si">{</span><span class="n">total_count</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- [</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 

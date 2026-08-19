@@ -1,58 +1,117 @@
-# Query Builder API
+# Query Builder API Tutorial
 
-This document details the type-safe fluent `QueryBuilder` API, AST generation, dialect-specific parameter binding, and execution methods.
+This document details the fluent `QueryBuilder` API, AST query construction, parameter binding, and execution methods.
 
 ---
 
-## Query Construction
+## 1. Query Builder Fluent Syntax
 
-`QueryBuilder` constructs abstract syntax trees (AST) representing database queries. Method chaining appends clause nodes:
+The `QueryBuilder` provides a type-safe, chainable interface for building SQL queries.
 
 ```python
-from lunarphase import QueryBuilder
+from lunarphase import Model, PrimaryKeyField, StringField, IntegerField
 
-# Constructs AST for SELECT id, name FROM users WHERE age >= 18 ORDER BY name ASC LIMIT 10
-query = (
-    User.select("id", "name")
-    .where(User.age >= 18)
-    .order_by("name", "asc")
-    .limit(10)
-)
+class User(Model):
+    id = PrimaryKeyField()
+    name = StringField()
+    age = IntegerField()
 ```
 
 ---
 
-## Dialect Parameter Binding
+## 2. Chainable Clause Syntax
 
-SQL parameters are formatted according to the configured database engine driver:
+### `.select(*fields: str)`
 
-| Database Dialect | Driver Package | Parameter Placeholder Format | Compiled Example |
-|---|---|---|---|
-| `sqlite` | `aiosqlite` | `?` | `WHERE age >= ?` |
-| `postgres` / `postgresql` | `asyncpg` | `$1`, `$2`, `$N` | `WHERE age >= $1 AND status = $2` |
-| `mysql` | `aiomysql` | `%s` | `WHERE age >= %s` |
-
-Parameter placeholders are generated in Rust via `QueryCompiler::get_placeholder(dialect, index)`.
-
----
-
-## Query Execution Methods
-
-| Method Signature | Return Type | Description |
-|---|---|---|
-| `await query.all()` | `List[Model]` | Fetches all matching rows and hydrates model instances. |
-| `await query.first()` | `Optional[Model]` | Fetches the first matching record or returns `None`. |
-| `await query.count()` | `int` | Executes `SELECT COUNT(*) FROM table WHERE ...` and returns integer count. |
-| `await query.exists()` | `bool` | Evaluates if at least one matching record exists in the table. |
-| `await query.paginate(page, per_page)` | `Tuple[List[Model], int]` | Applies `LIMIT` and `OFFSET` for pagination, returning records and total count. |
-
----
-
-## IN Expansion (`__in`)
-
-Passing list parameters expands placeholders dynamically:
+Specifies columns to retrieve:
 
 ```python
-# Executes: SELECT * FROM users WHERE id IN (?, ?, ?)
-users = await User.where(id__in=[1, 2, 3]).all()
+# SELECT id, name FROM users;
+users = await User.select("id", "name").all()
+```
+
+### `.where(*conditions, **kwargs)`
+
+Applies filtering conditions. Supports AST operator expressions and keyword arguments:
+
+```python
+# AST Expression Filtering
+users = await User.where(User.age >= 18).all()
+
+# Multiple AST Conditions (AND logic)
+users = await User.where(User.age >= 18, User.name != "Admin").all()
+
+# Keyword Argument Filtering
+users = await User.where(name="Alice", age=25).all()
+
+# IN Expansion via kwarg (__in)
+users = await User.where(id__in=[1, 2, 3, 4]).all()
+```
+
+### `.order_by(field: str, direction: str = "asc")`
+
+Sorts results by field in `"asc"` or `"desc"` direction:
+
+```python
+# ORDER BY age DESC, name ASC
+users = await User.where(User.age >= 18).order_by("age", "desc").order_by("name", "asc").all()
+```
+
+### `.limit(count: int)` & `.offset(count: int)`
+
+Controls result set sizing and pagination offset:
+
+```python
+# LIMIT 10 OFFSET 20
+users = await User.where(User.age >= 18).limit(10).offset(20).all()
+```
+
+### `.join(target_model, on: str, join_type: str = "INNER")`
+
+Performs table joins:
+
+```python
+# SELECT * FROM posts INNER JOIN users ON posts.user_id = users.id
+posts = await Post.join(User, on="posts.user_id = users.id").all()
+```
+
+### `.with_relations(*relations: str)`
+
+Eagerly loads related models in a single batched query:
+
+```python
+# Eagerly loads posts for all fetched authors
+authors = await Author.with_relations("posts").all()
+```
+
+---
+
+## 3. Query Execution Methods Syntax
+
+| Execution Method | Return Type | Description | Example Syntax |
+|---|---|---|---|
+| `.all()` | `List[Model]` | Fetches all matching rows as model instances | `users = await User.where(User.age >= 18).all()` |
+| `.first()` | `Optional[Model]` | Returns the first matching record or `None` | `user = await User.where(User.name == "Alice").first()` |
+| `.count()` | `int` | Executes `SELECT COUNT(*)` query | `total = await User.where(User.age >= 18).count()` |
+| `.exists()` | `bool` | Checks if at least 1 record matches condition | `has_alice = await User.where(User.name == "Alice").exists()` |
+| `.paginate(page, per_page)` | `Tuple[List[Model], int, int]` | Returns `(items, total_count, total_pages)` | `items, total, pages = await User.paginate(page=1, per_page=10)` |
+
+---
+
+## 4. Comprehensive Pagination Example
+
+```python
+async def pagination_tutorial():
+    page = 2
+    per_page = 10
+    
+    items, total_count, total_pages = await (
+        User.where(User.age >= 18)
+        .order_by("id", "asc")
+        .paginate(page=page, per_page=per_page)
+    )
+
+    print(f"Page {page} of {total_pages} (Total Records: {total_count})")
+    for user in items:
+        print(f"- [{user.id}] {user.name}")
 ```

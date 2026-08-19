@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#models-fields" class="md-skip">
+        <a href="#models-fields-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -306,6 +306,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../syntax-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -393,33 +420,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#model-metaclass-modelbase" class="md-nav__link">
+  <a href="#1-model-definition-lunarphasemodel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Model Metaclass (ModelBase)
+        1. Model Definition (lunarphase.Model)
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#field-descriptors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Field Descriptors
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Field Descriptors">
+    <nav class="md-nav" aria-label="1. Model Definition (lunarphase.Model)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#available-field-types" class="md-nav__link">
+  <a href="#table-name-resolution-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Available Field Types
+        Table Name Resolution Rules
       
     </span>
   </a>
@@ -432,22 +448,111 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operator-overloading-ast-expressions" class="md-nav__link">
+  <a href="#2-field-descriptors-syntax-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operator Overloading &amp; AST Expressions
+        2. Field Descriptors Syntax Reference
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Operator Overloading &amp; AST Expressions">
+    <nav class="md-nav" aria-label="2. Field Descriptors Syntax Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#supported-operator-mappings" class="md-nav__link">
+  <a href="#field-type-options-constructor-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Supported Operator Mappings
+        Field Type Options &amp; Constructor Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-active-record-methods-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Active Record Methods Tutorial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Active Record Methods Tutorial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createkwargs-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .create(**kwargs) -&gt; Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .save() -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .delete() -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydraterow-dict-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .hydrate(row: dict) -&gt; Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ast-operator-overloading-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AST Operator Overloading Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. AST Operator Overloading Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-ast-expression-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete AST Expression Operators
       
     </span>
   </a>
@@ -602,33 +707,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#model-metaclass-modelbase" class="md-nav__link">
+  <a href="#1-model-definition-lunarphasemodel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Model Metaclass (ModelBase)
+        1. Model Definition (lunarphase.Model)
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#field-descriptors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Field Descriptors
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Field Descriptors">
+    <nav class="md-nav" aria-label="1. Model Definition (lunarphase.Model)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#available-field-types" class="md-nav__link">
+  <a href="#table-name-resolution-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Available Field Types
+        Table Name Resolution Rules
       
     </span>
   </a>
@@ -641,22 +735,111 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#operator-overloading-ast-expressions" class="md-nav__link">
+  <a href="#2-field-descriptors-syntax-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Operator Overloading &amp; AST Expressions
+        2. Field Descriptors Syntax Reference
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Operator Overloading &amp; AST Expressions">
+    <nav class="md-nav" aria-label="2. Field Descriptors Syntax Reference">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#supported-operator-mappings" class="md-nav__link">
+  <a href="#field-type-options-constructor-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Supported Operator Mappings
+        Field Type Options &amp; Constructor Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-active-record-methods-tutorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Active Record Methods Tutorial
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Active Record Methods Tutorial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createkwargs-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .create(**kwargs) -&gt; Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .save() -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .delete() -&gt; bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydraterow-dict-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .hydrate(row: dict) -&gt; Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ast-operator-overloading-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AST Operator Overloading Syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. AST Operator Overloading Syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-ast-expression-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete AST Expression Operators
       
     </span>
   </a>
@@ -688,146 +871,153 @@
   
 
 
-<h1 id="models-fields">Models &amp; Fields</h1>
-<p>This document describes model definition mechanics, field descriptor types, metaclass attribute processing, and operator overloading expressions.</p>
+<h1 id="models-fields-tutorial">Models &amp; Fields Tutorial</h1>
+<p>This document details model definition mechanics, field descriptor configurations, active record methods, and AST operator overloading syntax.</p>
 <hr />
-<h2 id="model-metaclass-modelbase">Model Metaclass (<code>ModelBase</code>)</h2>
-<p>Model classes derive from <code>lunarphase.Model</code>, which is instantiated by metaclass <code>ModelBase</code>. The metaclass performs class creation processing:</p>
+<h2 id="1-model-definition-lunarphasemodel">1. Model Definition (<code>lunarphase.Model</code>)</h2>
+<p>Models represent database tables. To create a model, inherit from <code>lunarphase.Model</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">PrimaryKeyField</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">IntegerField</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Article</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;articles&quot;</span>  <span class="c1"># Explicit table name specification</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="nb">id</span> <span class="o">=</span> <span class="n">PrimaryKeyField</span><span class="p">()</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">title</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">(</span><span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">views</span> <span class="o">=</span> <span class="n">IntegerField</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="table-name-resolution-rules">Table Name Resolution Rules</h3>
 <ol>
-<li><strong>Table Name Resolution</strong>: Reads <code>__tablename__</code>. If unspecified, defaults to the lowercase pluralized class name.</li>
-<li><strong>Field Descriptor Collection</strong>: Scans class attributes for instances of <code>FieldDescriptor</code>, registering them into a <code>_fields</code> dictionary.</li>
-<li><strong>Primary Key Identification</strong>: Verifies the presence of a <code>PrimaryKeyField</code>. If omitted, automatically appends <code>id = PrimaryKeyField()</code>.</li>
-<li><strong>Relationship Registration</strong>: Collects relationship descriptors (<code>HasMany</code>, <code>BelongsTo</code>, <code>HasOne</code>) into <code>_relations</code>.</li>
+<li><strong>Explicit Specification</strong>: Set <code>__tablename__ = "custom_table_name"</code>.</li>
+<li><strong>Automatic Default</strong>: If <code>__tablename__</code> is omitted, the metaclass (<code>ModelBase</code>) automatically converts the class name to lowercase plural (e.g. <code>User</code> -&gt; <code>"users"</code>).</li>
 </ol>
 <hr />
-<h2 id="field-descriptors">Field Descriptors</h2>
-<p>Field descriptors manage type coercion, default value assignment, nullability constraints, and SQL data type mapping.</p>
-<h3 id="available-field-types">Available Field Types</h3>
+<h2 id="2-field-descriptors-syntax-reference">2. Field Descriptors Syntax Reference</h2>
+<p>Field descriptors define column data types, constraints, and defaults.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">PrimaryKeyField</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">StringField</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">IntegerField</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">FloatField</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">BooleanField</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">DateTimeField</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">JSONField</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">)</span>
+</code></pre></div>
+<h3 id="field-type-options-constructor-reference">Field Type Options &amp; Constructor Reference</h3>
 <table>
 <thead>
 <tr>
-<th>Field Class</th>
-<th>Python Type</th>
-<th>Default SQL Type</th>
-<th>Constructor Arguments</th>
+<th>Field Descriptor</th>
+<th>Parameters</th>
+<th>SQL Data Type</th>
+<th>Usage Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>PrimaryKeyField</code></td>
-<td><code>int</code></td>
+<td><code>name=None</code>, <code>auto_increment=True</code></td>
 <td><code>INTEGER PRIMARY KEY AUTOINCREMENT</code></td>
-<td><code>name=None</code></td>
+<td><code>id = PrimaryKeyField()</code></td>
 </tr>
 <tr>
 <td><code>StringField</code></td>
-<td><code>str</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
 <td><code>VARCHAR(255)</code></td>
-<td><code>max_length=255</code>, <code>nullable=True</code>, <code>default=None</code></td>
+<td><code>title = StringField(nullable=False)</code></td>
 </tr>
 <tr>
 <td><code>IntegerField</code></td>
-<td><code>int</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
 <td><code>INTEGER</code></td>
-<td><code>nullable=True</code>, <code>default=None</code></td>
+<td><code>views = IntegerField(default=0)</code></td>
 </tr>
 <tr>
 <td><code>FloatField</code></td>
-<td><code>float</code></td>
-<td><code>FLOAT</code></td>
-<td><code>nullable=True</code>, <code>default=None</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
+<td><code>REAL</code> / <code>FLOAT</code></td>
+<td><code>price = FloatField(default=0.0)</code></td>
 </tr>
 <tr>
 <td><code>BooleanField</code></td>
-<td><code>bool</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
 <td><code>BOOLEAN</code></td>
-<td><code>nullable=True</code>, <code>default=False</code></td>
+<td><code>is_published = BooleanField(default=False)</code></td>
 </tr>
 <tr>
 <td><code>DateTimeField</code></td>
-<td><code>datetime</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
 <td><code>DATETIME</code></td>
-<td><code>auto_now=False</code>, <code>auto_now_add=False</code></td>
+<td><code>created_at = DateTimeField()</code></td>
 </tr>
 <tr>
 <td><code>JSONField</code></td>
-<td><code>dict</code> / <code>list</code></td>
-<td><code>JSON</code></td>
-<td><code>nullable=True</code>, <code>default=None</code></td>
+<td><code>name=None</code>, <code>nullable=True</code>, <code>default=None</code></td>
+<td><code>JSON</code> / <code>TEXT</code></td>
+<td><code>tags = JSONField(default=[])</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="operator-overloading-ast-expressions">Operator Overloading &amp; AST Expressions</h2>
-<p>Accessing a field descriptor at the class level returns a <code>ColumnRef</code> AST node. Operator overloading builds AST expressions without executing queries:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Returns ColumnRef(&quot;age&quot;)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">User</span><span class="o">.</span><span class="n">age</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Returns BinaryOp(ColumnRef(&quot;age&quot;), &quot;&gt;=&quot;, Literal(18))</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">User</span><span class="o">.</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span>
+<h2 id="3-active-record-methods-tutorial">3. Active Record Methods Tutorial</h2>
+<p>Every model instance inherits essential active record methods:</p>
+<h3 id="createkwargs-model"><code>.create(**kwargs) -&gt; Model</code></h3>
+<p>Instantiates and saves a model record in a single operation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Article</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;LunarPhaseORM Release&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="supported-operator-mappings">Supported Operator Mappings</h3>
-<table>
-<thead>
-<tr>
-<th>Operator / Method</th>
-<th>SQL Output Pattern</th>
-<th>AST Node Formed</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>==</code></td>
-<td><code>column = ?</code></td>
-<td><code>BinaryOp(col, "=", val)</code></td>
-</tr>
-<tr>
-<td><code>!=</code></td>
-<td><code>column != ?</code></td>
-<td><code>BinaryOp(col, "!=", val)</code></td>
-</tr>
-<tr>
-<td><code>&lt;</code></td>
-<td><code>column &lt; ?</code></td>
-<td><code>BinaryOp(col, "&lt;", val)</code></td>
-</tr>
-<tr>
-<td><code>&lt;=</code></td>
-<td><code>column &lt;= ?</code></td>
-<td><code>BinaryOp(col, "&lt;=", val)</code></td>
-</tr>
-<tr>
-<td><code>&gt;</code></td>
-<td><code>column &gt; ?</code></td>
-<td><code>BinaryOp(col, "&gt;", val)</code></td>
-</tr>
-<tr>
-<td><code>&gt;=</code></td>
-<td><code>column &gt;= ?</code></td>
-<td><code>BinaryOp(col, "&gt;=", val)</code></td>
-</tr>
-<tr>
-<td><code>.in_(list)</code></td>
-<td><code>column IN (?, ?, ?)</code></td>
-<td><code>BinaryOp(col, "IN", tuple)</code></td>
-</tr>
-<tr>
-<td><code>.like(pattern)</code></td>
-<td><code>column LIKE ?</code></td>
-<td><code>BinaryOp(col, "LIKE", pattern)</code></td>
-</tr>
-<tr>
-<td><code>.is_null()</code></td>
-<td><code>column IS NULL</code></td>
-<td><code>BinaryOp(col, "IS NULL", None)</code></td>
-</tr>
-<tr>
-<td><code>.is_not_null()</code></td>
-<td><code>column IS NOT NULL</code></td>
-<td><code>BinaryOp(col, "IS NOT NULL", None)</code></td>
-</tr>
-</tbody>
-</table>
+<h3 id="save-bool"><code>.save() -&gt; bool</code></h3>
+<p>Persists changes to the database. Uses Rust <code>StateTracker</code> to diff current attributes against initial snapshots:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Draft Article&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">await</span> <span class="n">article</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Executes INSERT</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">article</span><span class="o">.</span><span class="n">views</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Mark field as dirty</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">await</span> <span class="n">article</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Executes UPDATE articles SET views = 5 WHERE id = 1;</span>
+</code></pre></div>
+<h3 id="delete-bool"><code>.delete() -&gt; bool</code></h3>
+<p>Deletes the model instance from the database:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">article</span> <span class="o">=</span> <span class="k">await</span> <span class="n">Article</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">await</span> <span class="n">article</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>  <span class="c1"># Executes DELETE FROM articles WHERE id = 1;</span>
+</code></pre></div>
+<h3 id="hydraterow-dict-model"><code>.hydrate(row: dict) -&gt; Model</code></h3>
+<p>Hydrates a dictionary row into a tracked model instance without triggering database SQL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">raw_row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Hydrated Article&quot;</span><span class="p">,</span> <span class="s2">&quot;views&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">hydrate</span><span class="p">(</span><span class="n">raw_row</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>  <span class="c1"># &quot;Hydrated Article&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="4-ast-operator-overloading-syntax">4. AST Operator Overloading Syntax</h2>
+<p>Accessing a field descriptor on a Model class returns a <code>ColumnRef</code> node. Python operators are overloaded to produce AST filter expressions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Returns ColumnRef(&quot;views&quot;)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Returns BinaryOp(ColumnRef(&quot;views&quot;), &quot;&gt;=&quot;, Literal(50))</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">&gt;=</span> <span class="mi">50</span>
+</code></pre></div>
+<h3 id="complete-ast-expression-operators">Complete AST Expression Operators</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Equality (==) -&gt; &quot;title = &#39;Python&#39;&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">Article</span><span class="o">.</span><span class="n">title</span> <span class="o">==</span> <span class="s2">&quot;Python&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Inequality (!=) -&gt; &quot;views != 0&quot;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">!=</span> <span class="mi">0</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Less than (&lt;) &amp; Less than or equal (&lt;=)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">&lt;</span> <span class="mi">100</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># Greater than (&gt;) &amp; Greater than or equal (&gt;=)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">&gt;</span> <span class="mi">10</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="n">Article</span><span class="o">.</span><span class="n">views</span> <span class="o">&gt;=</span> <span class="mi">10</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="c1"># IN List (.in_([val1, val2]))</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="n">Article</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">in_</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="c1"># SQL LIKE Pattern (.like(pattern))</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="n">Article</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="s2">&quot;%ORM%&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="c1"># Null Checks (.is_null() / .is_not_null())</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="n">Article</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">is_null</span><span class="p">()</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="n">Article</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">is_not_null</span><span class="p">()</span>
+</code></pre></div>
 
 
 

@@ -1,83 +1,98 @@
-# Migrations & CLI Reference
+# Migrations & CLI Reference Tutorial
 
-This document covers automated database schema diffing (`SchemaDiffEngine`), reversible migration generation, and terminal CLI commands.
-
----
-
-## Schema Diff Engine (`SchemaDiffEngine`)
-
-LunarPhaseORM includes an automated DDL generator powered by native Rust (`src/migration_diff.rs`). The engine compares in-memory `Model` field definitions against database table introspection schemas:
-
-```
-+---------------------------+       +---------------------------+
-|    Model Definitions      |       |  Database Introspection   |
-|  - id: INTEGER PRIMARY KEY|  vs   |  - id: INTEGER PRIMARY KEY|
-|  - name: VARCHAR(255)     |       |  - name: VARCHAR(255)     |
-|  - age: INTEGER           |       |  (missing 'age' column)   |
-+---------------------------+       +---------------------------+
-                                  │
-                       SchemaDiffEngine.diff_table()
-                                  │
-                                  ▼
-                Generated DDL: ALTER TABLE users ADD COLUMN age INTEGER;
-```
+This document covers automated database schema diffing (`SchemaDiffEngine`), migration file generation, and CLI terminal commands.
 
 ---
 
-## Command Line Tool (`lunarphase`)
+## 1. Command Line Tool (`lunarphase`)
 
-The `lunarphase` command-line interface provides tools to manage migration files, inspect status, apply pending migrations, and roll back changes.
+The `lunarphase` CLI manages database schema migrations, status inspections, and rollbacks.
 
-### 1. `lunarphase status`
+### CLI Commands Summary
 
-Displays current migration state and checks for pending migration files:
+| Command Syntax | Description | Example Usage |
+|---|---|---|
+| `lunarphase status` | Displays current migration status and pending files | `lunarphase status` |
+| `lunarphase make:migration <name>` | Generates a new DDL schema migration file | `lunarphase make:migration "create_users_table"` |
+| `lunarphase migrate` | Applies all pending migrations sequentially | `lunarphase migrate` |
+| `lunarphase rollback` | Rolls back the most recently applied migration | `lunarphase rollback` |
+
+---
+
+## 2. Step-by-Step CLI Migration Walkthrough
+
+### Step 2.1: Checking Migration Status
+
+Check current database migration state:
 
 ```bash
 $ lunarphase status
-Database Dialect: sqlite
-Current Revision: 20260815_001_create_users_table.py
-Pending Migrations: 1 file(s) remaining
+
+--- LunarPhaseORM Migration Status ---
+No migrations applied yet.
+--------------------------------------
 ```
 
-### 2. `lunarphase make:migration`
+### Step 2.2: Generating Migration Files
 
-Generates a reversible Python migration file in `migrations/`:
+Generate a new migration script based on your defined models:
 
 ```bash
-$ lunarphase make:migration "add_user_age_column"
-Created migration: migrations/20260815_002_add_user_age_column.py
+$ lunarphase make:migration "create_users_table"
+Created migration file: migrations/1723872000_create_users_table.py
 ```
 
-#### Migration File Anatomy
+### Step 2.3: Generated Migration File Structure
 
-Generated migration files export `upgrade()` and `downgrade()` functions:
+The CLI creates a Python migration script exporting `upgrade(engine)` and `downgrade(engine)` functions:
 
 ```python
-# migrations/20260815_002_add_user_age_column.py
+"""
+Migration generated automatically by LunarPhaseORM
+Timestamp: 1723872000
+"""
 
 async def upgrade(engine):
-    await engine.execute("ALTER TABLE users ADD COLUMN age INTEGER;")
+    sql_statements = [
+        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255) NOT NULL, age INTEGER DEFAULT 18);"
+    ]
+    for sql in sql_statements:
+        await engine.execute(sql)
 
 async def downgrade(engine):
-    await engine.execute("ALTER TABLE users DROP COLUMN age;")
+    sql_statements = [
+        "DROP TABLE IF EXISTS users;"
+    ]
+    for sql in sql_statements:
+        await engine.execute(sql)
 ```
 
-### 3. `lunarphase migrate`
+### Step 2.4: Applying Migrations (`lunarphase migrate`)
 
-Applies all pending migration files sequentially:
+Execute pending migrations:
 
 ```bash
 $ lunarphase migrate
-Applying migration 20260815_002_add_user_age_column.py... OK
-Successfully applied 1 migration(s).
+Applying migration: 1723872000_create_users_table.py
+Successfully applied: 1723872000_create_users_table.py
 ```
 
-### 4. `lunarphase rollback`
+### Step 2.5: Verifying Updated Status
 
-Rolls back the most recently applied migration by executing its `downgrade()` function:
+```bash
+$ lunarphase status
+
+--- LunarPhaseORM Migration Status ---
+ [X] 1723872000_create_users_table.py (applied: 2026-08-17 10:15:00)
+--------------------------------------
+```
+
+### Step 2.6: Rolling Back Migrations (`lunarphase rollback`)
+
+Revert the last applied migration:
 
 ```bash
 $ lunarphase rollback
-Rolling back migration 20260815_002_add_user_age_column.py... OK
-Successfully rolled back 1 migration(s).
+Rolling back migration: 1723872000_create_users_table.py
+Successfully rolled back: 1723872000_create_users_table.py
 ```

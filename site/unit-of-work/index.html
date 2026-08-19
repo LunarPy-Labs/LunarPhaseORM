@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unit-of-work-transactions" class="md-skip">
+        <a href="#unit-of-work-transactions-tutorial" class="md-skip">
           Skip to content
         </a>
       
@@ -306,6 +306,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../syntax-cheatsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
@@ -474,10 +501,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#identity-map-identitymap" class="md-nav__link">
+  <a href="#1-identity-map-identitymap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identity Map (IdentityMap)
+        1. Identity Map (IdentityMap)
       
     </span>
   </a>
@@ -485,22 +512,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transaction-engine-unitofwork" class="md-nav__link">
+  <a href="#2-unit-of-work-transaction-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transaction Engine (UnitOfWork)
+        2. Unit of Work Transaction Engine
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transaction Engine (UnitOfWork)">
+    <nav class="md-nav" aria-label="2. Unit of Work Transaction Engine">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-transaction-scope" class="md-nav__link">
+  <a href="#basic-transaction-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Transaction Scope
+        Basic Transaction Syntax
       
     </span>
   </a>
@@ -513,10 +540,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dirty-state-tracking-mechanism" class="md-nav__link">
+  <a href="#3-registration-methods-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dirty State Tracking Mechanism
+        3. Registration Methods Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-automatic-rollback-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatic Rollback &amp; Error Handling
       
     </span>
   </a>
@@ -585,10 +623,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#identity-map-identitymap" class="md-nav__link">
+  <a href="#1-identity-map-identitymap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identity Map (IdentityMap)
+        1. Identity Map (IdentityMap)
       
     </span>
   </a>
@@ -596,22 +634,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transaction-engine-unitofwork" class="md-nav__link">
+  <a href="#2-unit-of-work-transaction-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transaction Engine (UnitOfWork)
+        2. Unit of Work Transaction Engine
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Transaction Engine (UnitOfWork)">
+    <nav class="md-nav" aria-label="2. Unit of Work Transaction Engine">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#basic-transaction-scope" class="md-nav__link">
+  <a href="#basic-transaction-syntax" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Transaction Scope
+        Basic Transaction Syntax
       
     </span>
   </a>
@@ -624,10 +662,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dirty-state-tracking-mechanism" class="md-nav__link">
+  <a href="#3-registration-methods-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dirty State Tracking Mechanism
+        3. Registration Methods Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-automatic-rollback-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Automatic Rollback &amp; Error Handling
       
     </span>
   </a>
@@ -654,57 +703,93 @@
   
 
 
-<h1 id="unit-of-work-transactions">Unit of Work &amp; Transactions</h1>
+<h1 id="unit-of-work-transactions-tutorial">Unit of Work &amp; Transactions Tutorial</h1>
 <p>This document details session management, identity mapping (<code>IdentityMap</code>), atomic transaction boundaries (<code>UnitOfWork</code>), and snapshot isolation.</p>
 <hr />
-<h2 id="identity-map-identitymap">Identity Map (<code>IdentityMap</code>)</h2>
-<p>The <code>IdentityMap</code> maintains in-memory object identity within a session scope, ensuring that multiple queries fetching the same database record (<code>table</code>, <code>primary_key</code>) return references to the exact same Python object instance:</p>
+<h2 id="1-identity-map-identitymap">1. Identity Map (<code>IdentityMap</code>)</h2>
+<p>The <code>IdentityMap</code> maintains in-memory object identity within a session scope. It guarantees that multiple database queries fetching the same record (<code>table</code>, <code>primary_key</code>) return references to the exact same Python object instance:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase.core.uow</span><span class="w"> </span><span class="kn">import</span> <span class="n">IdentityMap</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">identity_map</span> <span class="o">=</span> <span class="n">IdentityMap</span><span class="p">()</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Registers or returns existing instance</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">user1</span> <span class="o">=</span> <span class="n">identity_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">user2</span> <span class="o">=</span> <span class="n">identity_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">assert</span> <span class="n">user1</span> <span class="ow">is</span> <span class="n">user2</span>  <span class="c1"># Guarantees single object identity in memory</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">PrimaryKeyField</span><span class="p">,</span> <span class="n">StringField</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="nb">id</span> <span class="o">=</span> <span class="n">PrimaryKeyField</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">identity_map</span> <span class="o">=</span> <span class="n">IdentityMap</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Register or retrieve instance</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">user1</span> <span class="o">=</span> <span class="n">identity_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">user2</span> <span class="o">=</span> <span class="n">identity_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">assert</span> <span class="n">user1</span> <span class="ow">is</span> <span class="n">user2</span>  <span class="c1"># True! Guarantees single object reference in memory</span>
 </code></pre></div>
 <hr />
-<h2 id="transaction-engine-unitofwork">Transaction Engine (<code>UnitOfWork</code>)</h2>
-<p><code>UnitOfWork</code> tracks pending mutations across model instances during a session, committing changes atomically inside transaction blocks.</p>
-<h3 id="basic-transaction-scope">Basic Transaction Scope</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitOfWork</span><span class="p">,</span> <span class="n">create_engine</span>
+<h2 id="2-unit-of-work-transaction-engine">2. Unit of Work Transaction Engine</h2>
+<p><code>UnitOfWork</code> manages dirty state tracking and transaction boundaries across multiple operations.</p>
+<h3 id="basic-transaction-syntax">Basic Transaction Syntax</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lunarphase</span><span class="w"> </span><span class="kn">import</span> <span class="n">UnitOfWork</span><span class="p">,</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">PrimaryKeyField</span><span class="p">,</span> <span class="n">StringField</span><span class="p">,</span> <span class="n">IntegerField</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///app.db&quot;</span><span class="p">)</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">session</span> <span class="o">=</span> <span class="n">UnitOfWork</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">begin</span><span class="p">():</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">session</span><span class="o">.</span><span class="n">register_new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">order</span> <span class="o">=</span> <span class="n">Order</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">100.0</span><span class="p">)</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">session</span><span class="o">.</span><span class="n">register_new</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">transaction_tutorial</span><span class="p">():</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="c1"># Atomic transaction scope</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">begin</span><span class="p">():</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="c1"># 1. Register new user</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">alice</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">session</span><span class="o">.</span><span class="n">register_new</span><span class="p">(</span><span class="n">alice</span><span class="p">)</span>
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="c1"># Exiting context block automatically calls await session.commit()</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="c1"># 2. Register another new user</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">bob</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="n">session</span><span class="o">.</span><span class="n">register_new</span><span class="p">(</span><span class="n">bob</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="c1"># Exiting context block automatically calls await session.commit()!</span>
 </code></pre></div>
-<p>If an exception occurs within <code>async with session.begin():</code>, the context manager automatically catches the error, calls <code>await session.rollback()</code>, and propagates the exception.</p>
 <hr />
-<h2 id="dirty-state-tracking-mechanism">Dirty State Tracking Mechanism</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>State Initialization (hydrate / create)
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  │
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  ├─► Snapshot State: {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  └─► Current State:  {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Attribute Mutation: user.age = 26
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  │
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  ├─► Snapshot State: {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  └─► Current State:  {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 26}  &lt;-- Marked Dirty!
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>Calling user.save() / session.commit()
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  │
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  ├─► Rust StateTracker diffs FxHashMap entries
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  ├─► Formats SQL: UPDATE users SET age = 26 WHERE id = 1;
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  └─► Calls hydrate_snapshot(): Snapshot updated to {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 26}
+<h2 id="3-registration-methods-reference">3. Registration Methods Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Method Signature</th>
+<th>Description</th>
+<th>Example Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session.register_new(instance)</code></td>
+<td>Registers new instance for <code>INSERT</code> on commit</td>
+<td><code>session.register_new(user)</code></td>
+</tr>
+<tr>
+<td><code>session.register_dirty(instance)</code></td>
+<td>Registers modified instance for <code>UPDATE</code> on commit</td>
+<td><code>session.register_dirty(user)</code></td>
+</tr>
+<tr>
+<td><code>session.register_deleted(instance)</code></td>
+<td>Registers instance for <code>DELETE</code> on commit</td>
+<td><code>session.register_deleted(user)</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-automatic-rollback-error-handling">4. Automatic Rollback &amp; Error Handling</h2>
+<p>If an exception occurs within <code>async with session.begin():</code>, <code>UnitOfWork</code> automatically catches the error, executes <code>await session.rollback()</code>, and propagates the exception safely:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">error_rollback_tutorial</span><span class="p">():</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">session</span> <span class="o">=</span> <span class="n">UnitOfWork</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">begin</span><span class="p">():</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            <span class="n">session</span><span class="o">.</span><span class="n">register_new</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="c1"># Simulate an unexpected error</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Something went wrong during checkout!&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transaction rolled back safely:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="c1"># Database remains clean and unaffected!</span>
 </code></pre></div>
 
 

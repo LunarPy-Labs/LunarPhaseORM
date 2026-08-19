@@ -1,61 +1,142 @@
-# Models & Fields
+# Models & Fields Tutorial
 
-This document describes model definition mechanics, field descriptor types, metaclass attribute processing, and operator overloading expressions.
-
----
-
-## Model Metaclass (`ModelBase`)
-
-Model classes derive from `lunarphase.Model`, which is instantiated by metaclass `ModelBase`. The metaclass performs class creation processing:
-
-1. **Table Name Resolution**: Reads `__tablename__`. If unspecified, defaults to the lowercase pluralized class name.
-2. **Field Descriptor Collection**: Scans class attributes for instances of `FieldDescriptor`, registering them into a `_fields` dictionary.
-3. **Primary Key Identification**: Verifies the presence of a `PrimaryKeyField`. If omitted, automatically appends `id = PrimaryKeyField()`.
-4. **Relationship Registration**: Collects relationship descriptors (`HasMany`, `BelongsTo`, `HasOne`) into `_relations`.
+This document details model definition mechanics, field descriptor configurations, active record methods, and AST operator overloading syntax.
 
 ---
 
-## Field Descriptors
+## 1. Model Definition (`lunarphase.Model`)
 
-Field descriptors manage type coercion, default value assignment, nullability constraints, and SQL data type mapping.
-
-### Available Field Types
-
-| Field Class | Python Type | Default SQL Type | Constructor Arguments |
-|---|---|---|---|
-| `PrimaryKeyField` | `int` | `INTEGER PRIMARY KEY AUTOINCREMENT` | `name=None` |
-| `StringField` | `str` | `VARCHAR(255)` | `max_length=255`, `nullable=True`, `default=None` |
-| `IntegerField` | `int` | `INTEGER` | `nullable=True`, `default=None` |
-| `FloatField` | `float` | `FLOAT` | `nullable=True`, `default=None` |
-| `BooleanField` | `bool` | `BOOLEAN` | `nullable=True`, `default=False` |
-| `DateTimeField` | `datetime` | `DATETIME` | `auto_now=False`, `auto_now_add=False` |
-| `JSONField` | `dict` / `list` | `JSON` | `nullable=True`, `default=None` |
-
----
-
-## Operator Overloading & AST Expressions
-
-Accessing a field descriptor at the class level returns a `ColumnRef` AST node. Operator overloading builds AST expressions without executing queries:
+Models represent database tables. To create a model, inherit from `lunarphase.Model`:
 
 ```python
-# Returns ColumnRef("age")
-User.age
+from lunarphase import Model, PrimaryKeyField, StringField, IntegerField
 
-# Returns BinaryOp(ColumnRef("age"), ">=", Literal(18))
-User.age >= 18
+class Article(Model):
+    __tablename__ = "articles"  # Explicit table name specification
+
+    id = PrimaryKeyField()
+    title = StringField(nullable=False)
+    views = IntegerField(default=0)
 ```
 
-### Supported Operator Mappings
+### Table Name Resolution Rules
 
-| Operator / Method | SQL Output Pattern | AST Node Formed |
-|---|---|---|
-| `==` | `column = ?` | `BinaryOp(col, "=", val)` |
-| `!=` | `column != ?` | `BinaryOp(col, "!=", val)` |
-| `<` | `column < ?` | `BinaryOp(col, "<", val)` |
-| `<=` | `column <= ?` | `BinaryOp(col, "<=", val)` |
-| `>` | `column > ?` | `BinaryOp(col, ">", val)` |
-| `>=` | `column >= ?` | `BinaryOp(col, ">=", val)` |
-| `.in_(list)` | `column IN (?, ?, ?)` | `BinaryOp(col, "IN", tuple)` |
-| `.like(pattern)` | `column LIKE ?` | `BinaryOp(col, "LIKE", pattern)` |
-| `.is_null()` | `column IS NULL` | `BinaryOp(col, "IS NULL", None)` |
-| `.is_not_null()` | `column IS NOT NULL` | `BinaryOp(col, "IS NOT NULL", None)` |
+1. **Explicit Specification**: Set `__tablename__ = "custom_table_name"`.
+2. **Automatic Default**: If `__tablename__` is omitted, the metaclass (`ModelBase`) automatically converts the class name to lowercase plural (e.g. `User` -> `"users"`).
+
+---
+
+## 2. Field Descriptors Syntax Reference
+
+Field descriptors define column data types, constraints, and defaults.
+
+```python
+from lunarphase import (
+    PrimaryKeyField,
+    StringField,
+    IntegerField,
+    FloatField,
+    BooleanField,
+    DateTimeField,
+    JSONField
+)
+```
+
+### Field Type Options & Constructor Reference
+
+| Field Descriptor | Parameters | SQL Data Type | Usage Example |
+|---|---|---|---|
+| `PrimaryKeyField` | `name=None`, `auto_increment=True` | `INTEGER PRIMARY KEY AUTOINCREMENT` | `id = PrimaryKeyField()` |
+| `StringField` | `name=None`, `nullable=True`, `default=None` | `VARCHAR(255)` | `title = StringField(nullable=False)` |
+| `IntegerField` | `name=None`, `nullable=True`, `default=None` | `INTEGER` | `views = IntegerField(default=0)` |
+| `FloatField` | `name=None`, `nullable=True`, `default=None` | `REAL` / `FLOAT` | `price = FloatField(default=0.0)` |
+| `BooleanField` | `name=None`, `nullable=True`, `default=None` | `BOOLEAN` | `is_published = BooleanField(default=False)` |
+| `DateTimeField` | `name=None`, `nullable=True`, `default=None` | `DATETIME` | `created_at = DateTimeField()` |
+| `JSONField` | `name=None`, `nullable=True`, `default=None` | `JSON` / `TEXT` | `tags = JSONField(default=[])` |
+
+---
+
+## 3. Active Record Methods Tutorial
+
+Every model instance inherits essential active record methods:
+
+### `.create(**kwargs) -> Model`
+
+Instantiates and saves a model record in a single operation:
+
+```python
+article = await Article.create(title="LunarPhaseORM Release", views=100)
+```
+
+### `.save() -> bool`
+
+Persists changes to the database. Uses Rust `StateTracker` to diff current attributes against initial snapshots:
+
+```python
+article = Article(title="Draft Article", views=0)
+await article.save()  # Executes INSERT
+
+article.views = 5  # Mark field as dirty
+await article.save()  # Executes UPDATE articles SET views = 5 WHERE id = 1;
+```
+
+### `.delete() -> bool`
+
+Deletes the model instance from the database:
+
+```python
+article = await Article.where(id=1).first()
+await article.delete()  # Executes DELETE FROM articles WHERE id = 1;
+```
+
+### `.hydrate(row: dict) -> Model`
+
+Hydrates a dictionary row into a tracked model instance without triggering database SQL:
+
+```python
+raw_row = {"id": 10, "title": "Hydrated Article", "views": 500}
+article = Article.hydrate(raw_row)
+print(article.title)  # "Hydrated Article"
+```
+
+---
+
+## 4. AST Operator Overloading Syntax
+
+Accessing a field descriptor on a Model class returns a `ColumnRef` node. Python operators are overloaded to produce AST filter expressions:
+
+```python
+# Returns ColumnRef("views")
+Article.views
+
+# Returns BinaryOp(ColumnRef("views"), ">=", Literal(50))
+Article.views >= 50
+```
+
+### Complete AST Expression Operators
+
+```python
+# Equality (==) -> "title = 'Python'"
+Article.title == "Python"
+
+# Inequality (!=) -> "views != 0"
+Article.views != 0
+
+# Less than (<) & Less than or equal (<=)
+Article.views < 100
+Article.views <= 100
+
+# Greater than (>) & Greater than or equal (>=)
+Article.views > 10
+Article.views >= 10
+
+# IN List (.in_([val1, val2]))
+Article.id.in_([1, 2, 3])
+
+# SQL LIKE Pattern (.like(pattern))
+Article.title.like("%ORM%")
+
+# Null Checks (.is_null() / .is_not_null())
+Article.title.is_null()
+Article.title.is_not_null()
+```

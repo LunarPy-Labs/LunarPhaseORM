@@ -33,6 +33,7 @@ markdown_extensions:
 nav:
   - Overview: index.md
   - Getting Started: getting-started.md
+  - Syntax Cheat Sheet: syntax-cheatsheet.md
   - Core Architecture: architecture.md
   - Models & Fields: models-and-fields.md
   - Query Builder: query-builder.md
