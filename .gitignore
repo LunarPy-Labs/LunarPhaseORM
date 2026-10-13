@@ -46,3 +46,7 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+tests_live_mysql/
+live_mysql_migrations/
+ROADMAP.md

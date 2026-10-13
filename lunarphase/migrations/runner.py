@@ -30,13 +30,31 @@ class MigrationRunner:
 
     async def init_migration_table(self):
         engine = get_engine()
-        sql = """
-        CREATE TABLE IF NOT EXISTS _lunarphase_migrations (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name VARCHAR(255) NOT NULL,
-            applied_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
-        """
+        dialect = engine.dialect
+        if dialect == "mysql":
+            sql = """
+            CREATE TABLE IF NOT EXISTS _lunarphase_migrations (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                applied_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            );
+            """
+        elif dialect in ("postgres", "postgresql"):
+            sql = """
+            CREATE TABLE IF NOT EXISTS _lunarphase_migrations (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+            """
+        else:
+            sql = """
+            CREATE TABLE IF NOT EXISTS _lunarphase_migrations (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name VARCHAR(255) NOT NULL,
+                applied_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            );
+            """
         await engine.execute(sql)
 
     async def make_migration(self, name: str, models: list) -> Optional[str]:

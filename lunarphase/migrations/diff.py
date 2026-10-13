@@ -38,12 +38,19 @@ class MigrationDiff:
                 cols = db_schema["columns"]
                 if not cols:
                     col_defs = []
+                    dialect = engine.dialect
                     for name, meta in fields.items():
-                        d = f"{name} {meta['data_type']}"
                         if meta["primary_key"]:
-                            d += " PRIMARY KEY"
-                        elif not meta["nullable"]:
-                            d += " NOT NULL"
+                            if dialect == "mysql":
+                                d = f"{name} INT AUTO_INCREMENT PRIMARY KEY"
+                            elif dialect in ("postgres", "postgresql"):
+                                d = f"{name} SERIAL PRIMARY KEY"
+                            else:
+                                d = f"{name} INTEGER PRIMARY KEY AUTOINCREMENT"
+                        else:
+                            d = f"{name} {meta['data_type']}"
+                            if not meta["nullable"]:
+                                d += " NOT NULL"
                         col_defs.append(d)
                     up = f"CREATE TABLE IF NOT EXISTS {table_name} ({', '.join(col_defs)});"
                     down = f"DROP TABLE IF EXISTS {table_name};"

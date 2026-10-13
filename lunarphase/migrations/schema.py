@@ -26,9 +26,29 @@ class SchemaExtractor:
         columns = {}
 
         if dialect == "sqlite":
-            rows = await engine.fetch_all(f"PRAGMA table_info('{table_name}');")
-            for r in rows:
-                # r: cid, name, type, notnull, dflt_value, pk
-                col_name = r.get("name")
-                columns[col_name] = r.get("type", "TEXT")
+            try:
+                rows = await engine.fetch_all(f"PRAGMA table_info('{table_name}');")
+                for r in rows:
+                    col_name = r.get("name")
+                    columns[col_name] = r.get("type", "TEXT")
+            except Exception:
+                columns = {}
+        elif dialect == "mysql":
+            try:
+                rows = await engine.fetch_all(f"DESCRIBE `{table_name}`;")
+                for r in rows:
+                    col_name = r.get("Field") or r.get("field")
+                    columns[col_name] = r.get("Type") or r.get("type", "VARCHAR(255)")
+            except Exception:
+                columns = {}
+        elif dialect in ("postgres", "postgresql"):
+            try:
+                rows = await engine.fetch_all(
+                    f"SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '{table_name}';"
+                )
+                for r in rows:
+                    col_name = r.get("column_name")
+                    columns[col_name] = r.get("data_type", "text")
+            except Exception:
+                columns = {}
         return {"table_name": table_name, "columns": columns}

@@ -63,12 +63,20 @@ impl SchemaDiffEngine {
         if actual_fields.is_empty() {
             let mut col_defs = Vec::new();
             for (name, (dtype, nullable, pk)) in &expected_fields {
-                let mut def = format!("{} {}", name, dtype);
+                let mut def = String::new();
                 if *pk {
-                    def.push_str(" PRIMARY KEY");
-                }
-                if !nullable && !pk {
-                    def.push_str(" NOT NULL");
+                    if _dialect == "mysql" {
+                        def = format!("{} INT AUTO_INCREMENT PRIMARY KEY", name);
+                    } else if _dialect == "postgres" || _dialect == "postgresql" {
+                        def = format!("{} SERIAL PRIMARY KEY", name);
+                    } else {
+                        def = format!("{} INTEGER PRIMARY KEY AUTOINCREMENT", name);
+                    }
+                } else {
+                    def = format!("{} {}", name, dtype);
+                    if !nullable {
+                        def.push_str(" NOT NULL");
+                    }
                 }
                 col_defs.push(def);
             }

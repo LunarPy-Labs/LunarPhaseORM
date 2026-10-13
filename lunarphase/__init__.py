@@ -17,12 +17,12 @@ from lunarphase.core.fields import (
 )
 from lunarphase.core.relations import HasMany, BelongsTo, HasOne
 from lunarphase.core.uow import UnitOfWork, IdentityMap
-from lunarphase.db.engine import create_engine, set_engine, get_engine, SQLiteEngine
+from lunarphase.db.engine import create_engine, set_engine, get_engine, SQLiteEngine, MySQLEngine, PostgresEngine
 from lunarphase.query.builder import QueryBuilder
 from lunarphase.query.batcher import DeferredAutoBatcher
 from lunarphase.migrations.runner import MigrationRunner
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 __all__ = [
     "Model",
     "ModelBase",
@@ -43,6 +43,8 @@ __all__ = [
     "set_engine",
     "get_engine",
     "SQLiteEngine",
+    "MySQLEngine",
+    "PostgresEngine",
     "QueryBuilder",
     "DeferredAutoBatcher",
     "MigrationRunner",
